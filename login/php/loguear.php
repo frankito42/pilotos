@@ -3,7 +3,7 @@ session_start();
 require "../../conn/conn.php";
 $user=$_POST['user'];
 $pass=$_POST['pass'];
-$sql="SELECT * FROM `users` WHERE `user`=:user AND `pass`=:pass";
+$sql="SELECT * FROM `users` WHERE `user`=:user AND `pass`=:pass and estado=1";
 $res=$conn->prepare($sql);
 $res->bindParam(":user",$user);
 $res->bindParam(":pass",$pass);

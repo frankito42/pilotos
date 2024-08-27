@@ -13,13 +13,8 @@ document.getElementById("loginForm").addEventListener("submit",async (e)=>{
             $("#error").modal("show")
         }else{
             localStorage.setItem("user", JSON.stringify(data));
-           /*  localStorage.getItem("user"); */
-            /* console.log(localStorage.getItem("user")) */
-            if(data.admin==1){
-                location.href="../admin/index.html"
-            }else{
-                location.href="../alumno/index.html"
-            }
+
+            comprobarSesion()
 
         }
     });
@@ -30,7 +25,7 @@ function comprobarSesion() {
         if(JSON.parse(localStorage.getItem("user")).admin==1){
             location.href="../admin/index.html"
         }else{
-            location.href="../alumno/index.html"
+            location.href="../piloto/index.html"
         }
     }else{
        

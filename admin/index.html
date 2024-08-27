@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador Aero Club</title>
+    <link rel="stylesheet" href="../mdb/css/mdb.min.css">
+    <link rel="stylesheet" href="../toastr/build/toastr.min.css">
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <!-- Container wrapper -->
+        <div class="container">
+            <!-- Navbar brand -->
+            <a class="navbar-brand me-2" href="#">
+            <img
+                src="l.png"
+                height="50"
+                alt="Aero club Logo"
+                loading="lazy"
+                style="margin-top: -1px;"
+            />
+            </a>
+            
+
+            <!-- Toggle button -->
+            <button
+            data-mdb-collapse-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            >
+            <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Usuarios</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="tienda.html">Tienda</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="#">Projects</a>
+                </li> -->
+              </ul>
+            <!-- Left links -->
+
+            <div class="d-flex align-items-center">
+                <button id="cerrarSesion" data-mdb-ripple-init type="button" class="btn btn-link px-3 me-2">
+                Cerrar sesion
+                </button>
+            </div>
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <div class="container mt-2">
+        <div class="row mb-2">
+            <div class="col-6">
+                <button type="button" data-mdb-modal-init data-mdb-target="#modalNuevoAlumno" class="btn btn-primary" data-mdb-ripple-init>Registrar Alumno</button>
+            </div>
+            <div class="col-6">
+                <div class="form-outline" data-mdb-input-init>
+                    <input type="text" required id="search" name="search" class="form-control" />
+                    <label class="form-label" for="search">Buscar</label>
+                </div>
+            </div>
+        </div> 
+        <div class="row mb-2">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>piloto</th>
+                            <th>dni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaPilotos">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+        <!-- Modal -->
+         <!-- Modal -->
+<div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="background: #ededed;padding: 1%;border-radius: 5px;" id="nombreXd"></h5>
+          <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" onclick="abrirModalEdit()" class="btn btn-info btn-rounded btn-block btn-lg" data-mdb-ripple-init>Editar Estudiante</button>
+                    <a class="btn btn-success btn-rounded btn-block btn-lg" target="_blank" id="whatsApp" class="btn btn-info btn-rounded btn-block btn-lg" data-mdb-ripple-init>WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <!-- Modal -->
+        <!-- Modal -->
+        <!-- Modal -->
+         <!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formEditarEstudiante">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="background: #ededed;padding: 1%;border-radius: 5px;">Editar estudiante</h5>
+          <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="nombreEdit" name="nombreEdit" class="form-control" />
+                        <label class="form-label" for="nombreEdit">Nombre Completo</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="dniEdit" name="dniEdit" class="form-control" />
+                        <label class="form-label" for="dniEdit">DNI</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="emailEdit" name="emailEdit" class="form-control" />
+                        <label class="form-label" for="emailEdit">Email</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="telefonoEdit" name="telefonoEdit" class="form-control" />
+                        <label class="form-label" for="telefonoEdit">Numero de telefono</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="userEdit" name="userEdit" class="form-control" />
+                        <label class="form-label" for="userEdit">User</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="passEdit" name="passEdit" class="form-control" />
+                        <label class="form-label" for="passEdit">Contraseña</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" data-mdb-ripple-init>Guardar cambios</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+        <!-- Modal -->
+        <!-- Modal -->
+        <!-- Modal -->
+       
+        <!-- Modal -->
+         <!-- Modal -->
+<div class="modal fade" id="modalNuevoAlumno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="formNewAlum">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="background: #ededed;padding: 1%;border-radius: 5px;">Registrar nuevo piloto</h5>
+          <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="nombreNew" name="nombreNew" class="form-control" />
+                        <label class="form-label" for="nombreNew">Nombre completo</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="dniNew" name="dniNew" class="form-control" />
+                        <label class="form-label" for="dniNew">DNI</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="email" name="email" class="form-control" />
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="telefono" name="telefono" class="form-control" />
+                        <label class="form-label" for="telefono">Telefono</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="userNew" name="userNew" class="form-control" />
+                        <label class="form-label" for="userNew">Nombre de usuario</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="passNew" name="passNew" class="form-control" />
+                        <label class="form-label" for="passNew">Contrseña</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cerrarModalNew" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" data-mdb-ripple-init>Guardar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+        <!-- Modal -->
+        <!-- Modal -->
+        <!-- Modal -->
+        <!-- Modal -->
+        <!-- Modal -->
+     
+    
+</body>
+<script src="../mdb/js/jquery.js"></script>
+<script src="../toastr/build/toastr.min.js"></script>
+<script src="../mdb/js/mdb.umd.min.js"></script>
+<script src="js/js.js"></script>
+</html>
