@@ -191,15 +191,21 @@ function buscarEstudiantePorId(id) {
   }
 function dibujarHistorial(pagos) {
     let tr=``
+    let badge=""
     pagos.forEach(element => {
+
+        if(element.estado=="En curso"){
+            badge=`<span class="badge rounded-pill badge-success">${element.estado}</span>`
+        }else{
+            badge=`<span class="badge rounded-pill badge-danger">${element.estado}</span>`
+        }
 
         tr+=`
         <tr>
             <td>${element.nombreCompleto}</td>
-            <td>${element.dni}</td>
             <td>${element.fechaInicio}</td>
             <td>${element.fechaFin}</td>
-            <td>${element.estado}</td>
+            <td>${badge}</td>
         </tr>
         `
     });

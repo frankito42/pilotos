@@ -101,15 +101,18 @@ function dibujar(params) {
     let tr=``
     params.forEach(element => {
        
-        tr+=`<tr>
-            <td>${element.nombreCompleto}</td>
-            <td>${element.fechaInicio}</td>
-            <td><span class="badge rounded-pill badge-success">${element.estado}</span></td>
-            <td><button onclick="finalizar(${element.id})" class="btn btn-danger">Finalizar</button></td>
-        </tr>`
+        tr+=`
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${element.nombreCompleto}</h5>
+                <p class="card-text">Inicio: ${element.fechaInicio}</p>
+                <span class="badge rounded-pill badge-success btn-block">${element.estado}</span>
+                <button onclick="finalizar(${element.id})" class="btn btn-danger btn-block">Finalizar</button>
+              </div>
+            </div>`
     });
     if(params.length==0){
-        tr=`<tr><td colspan="4" style="text-align: center;">Sin Datos</td></tr>`
+        tr=`<h2 style="text-align: center;background: #f1f1f1;border-radius: 5px;">Sin Datos</h2>`
     }
     document.getElementById("enCurso").innerHTML=tr
 
@@ -118,12 +121,16 @@ function dibujarF(params) {
     let tr=``
     params.forEach(element => {
        
-        tr+=`<tr>
-            <td>${element.nombreCompleto}</td>
-            <td>${element.fechaInicio}</td>
-            <td>${element.fechaFin}</td>
-            <td><span class="badge rounded-pill badge-success">${element.estado}</span></td>
-        </tr>`
+        tr+=`<div class="col-md-4 mb-2">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${element.nombreCompleto}</h5>
+                <p class="card-text">Inicio: ${element.fechaInicio}</p>
+                <p class="card-text">Fin: ${element.fechaFin}</p>
+                <span class="badge rounded-pill badge-danger btn-block">${element.estado}</span>
+              </div>
+            </div>
+        </div>`
     });
     if(params.length==0){
         tr=`<tr><td colspan="4" style="text-align: center;">Sin Datos</td></tr>`
