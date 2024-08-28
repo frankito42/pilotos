@@ -195,18 +195,22 @@ function dibujarHistorial(pagos) {
     pagos.forEach(element => {
 
         if(element.estado=="En curso"){
-            badge=`<span class="badge rounded-pill badge-success">${element.estado}</span>`
+            badge=`<span class="badge rounded-pill badge-success btn-block">${element.estado}</span>`
         }else{
-            badge=`<span class="badge rounded-pill badge-danger">${element.estado}</span>`
+            badge=`<span class="badge rounded-pill badge-danger btn-block">${element.estado}</span>`
         }
 
         tr+=`
-        <tr>
-            <td>${element.nombreCompleto}</td>
-            <td>${element.fechaInicio}</td>
-            <td>${element.fechaFin}</td>
-            <td>${badge}</td>
-        </tr>
+        <div class="col-md-4 mb-2">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${element.nombreCompleto}</h5>
+                <p class="card-text">Inicio: ${element.fechaInicio}</p>
+                <p class="card-text">Fin: ${element.fechaFin}</p>
+                ${badge}
+              </div>
+            </div>
+        </div>
         `
     });
     document.getElementById("finalizados").innerHTML=tr

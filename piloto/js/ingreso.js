@@ -95,7 +95,7 @@ async function listarFinalizados() {
     console.log(response)
     dibujarF(response)
     
-}
+} 
 
 function dibujar(params) {
     let tr=``
