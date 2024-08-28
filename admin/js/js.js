@@ -19,7 +19,13 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     })
     /* SALUDA AL USUARIO */
     saludar()
-
+    document.getElementById("ex1-tab-1").addEventListener("click",async (e)=>{
+        await listarPilotos()
+    })
+    document.getElementById("ex1-tab-2").addEventListener("click",async (e)=>{
+            await historial()
+            console.log("a")
+    })
     
 
     await listarPilotos()
@@ -106,7 +112,6 @@ async function listarPilotos() {
 
   function dibujarPagos(pagos) {
     let tr=``
-    let mesesPagos=[]
     pagos.forEach(element => {
 
         tr+=`
@@ -117,8 +122,6 @@ async function listarPilotos() {
             </td>
         </tr>
         `
-        mesesPagos=[]
-        elementoMeses=""
     });
     document.getElementById("tablaPilotos").innerHTML=tr
 }
@@ -175,14 +178,10 @@ function abrirModalEdit() {
 
     }, 500);
 }
-function abrirModalHistorial() {
-    modalAccionesObjet.hide()
-    let estu
-    setTimeout(async () => {
-        modalHistorialObjet.show()
-        await historialPagosAlum(localStorage.getItem("idAccion"))
-
-    }, 500);
+async function historial() {
+    let response = await fetch('php/historial.php');
+    response = await response.json();
+    dibujarHistorial(response)
 }
 
 function buscarEstudiantePorId(id) {
@@ -190,5 +189,20 @@ function buscarEstudiantePorId(id) {
     console.log(pilotos)
     return pilotoEncontrado;
   }
+function dibujarHistorial(pagos) {
+    let tr=``
+    pagos.forEach(element => {
 
+        tr+=`
+        <tr>
+            <td>${element.nombreCompleto}</td>
+            <td>${element.dni}</td>
+            <td>${element.fechaInicio}</td>
+            <td>${element.fechaFin}</td>
+            <td>${element.estado}</td>
+        </tr>
+        `
+    });
+    document.getElementById("finalizados").innerHTML=tr
+}
 

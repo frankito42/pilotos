@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAJA</title>
+    <title>Bienvenido</title>
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -57,7 +57,7 @@ https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="#">
                 <img style="border-radius: 100%;"
-                    src="https://w7.pngwing.com/pngs/197/874/png-transparent-pharmacy-cross-logo-bended-shape.png"
+                    src="piloto.png"
                     height="60"
                     alt="MDB Logo"
                     loading="lazy"
@@ -151,18 +151,18 @@ https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
     <div class="container">
         <div class="row mt-2">
             <div class="col-4">
-                <button type="button" class="btn btn-primary" data-mdb-ripple-init  id="btnModalIngreso">
+                <button type="button" class="btn btn-primary" data-mdb-ripple-init  id="btnModalRegistro">
                     Iniciar vuelo
                   </button>
                  <!--  <button type="button" class="btn btn-primary" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#modalPdf">
                     PDF
                   </button> -->
             </div>
-            <div class="col-8">
+            <!-- <div class="col-8">
                 <div class="form-outline" data-mdb-input-init>
                     <input type="date" id="search" class="form-control" />
                 </div>
-            </div>
+            </div> -->
         </div>
         
         <div class="row mt-2">
@@ -204,36 +204,15 @@ https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Detalle</th>
-                                <th>Fecha</th>
-                                <th>Monto</th>
+                                <th>Piloto</th>
+                                <th>Fecha inicio</th>
+                                <th>Estado</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="tbodyPeso">
+                        <tbody id="enCurso">
                             
                         </tbody>
-                        <fotter>
-                            <tr>
-                                <th colspan="2">Ingreso en efectivo</th>
-                                <th id="ingresoEfectivo"></th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">Ingreso en tarjeta</th>
-                                <th id="ingresoTarjeta"></th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">Ingreso en MP</th>
-                                <th id="ingresoMp"></th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">TOTAL INGRESOS</th>
-                                <th id="ingreso"></th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">TOTAL EGRESOS</th>
-                                <th id="egresos"></th>
-                            </tr>
-                        </fotter>
                     </table>
                     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
                     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -244,24 +223,15 @@ https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Detalle</th>
-                                <th>Fecha</th>
-                                <th>Monto</th>
+                                <th>Piloto</th>
+                                <th>Fecha inicio</th>
+                                <th>Fecha fin</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
-                        <tbody id="tbodyGuarani">
+                        <tbody id="finalizados">
                             
                         </tbody>
-                        <fotter>
-                            <tr>
-                                <th colspan="2">TOTAL INGRESOS</th>
-                                <th id="ingresoGuarani"></th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">TOTAL EGRESOS</th>
-                                <th id="egresosGuarani"></th>
-                            </tr>
-                        </fotter>
                     </table>
                     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
                     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -296,85 +266,27 @@ https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
     <!-- /////////////////////////////////////MODAL INGRESO///////////////////////////////////////////////// -->
     <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
      <!-- Modal -->
-    <div class="modal fade" id="modalIngreso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
-            <form id="formularioIngreso">
                 <div class="modal-header">
-                <h5 class="modal-title text-success" id="exampleModalLabel">INGRESO</h5>
+                <h5 class="modal-title text-success" id="exampleModalLabel">Iniciar vuelo</h5>
                 <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12 mb-2">
-                            <select class="selectXd" required name="tipoIngreso">
-                                <option value="Ingreso" selected>Ingreso</option>
-                                <option value="Egreso">Egreso</option>
-                            </select>                        
-                        </div>
-                        <div class="col-12 mb-2">
-                            <select class="selectXd" required name="metodoPago">
-                                <option value="Efectivo" selected>Efectivo</option>
-                                <option value="Tarjeta">Tarjeta</option>
-                                <option value="Mercado Pago">Mercado Pago</option>
-                            </select>                        
-                        </div>
-                        <div class="col-12 mb-2">
-                            <select class="selectXd" required name="moneda">
-                                <option value="Peso Argentino" selected>Peso Argentino.</option>
-                                <option value="Guaranies">GS.</option>
-                            </select>                        
-                        </div>
-                        <div class="col-12 mb-2">
-                            <div class="form-outline" data-mdb-input-init>
-                                <input type="number" required name="monto" id="montoIngreso" class="form-control form-control-lg" />
-                                <label class="form-label" for="montoIngreso">Ingresar Monto</label>
-                            </div>                          
-                        </div>
-                        <div class="col-12">
-                            <div class="form-outline" data-mdb-input-init>
-                                <textarea class="form-control" id="detalle" name="detalle" rows="4"></textarea>
-                                <label class="form-label" for="detalle">Detalle (opcional)</label>
-                            </div>                        
-                        </div>
+                        <button id="btnIniciar" class="btn btn-success btn-block">Iniciar vuelo</button>
                     </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" id="cerrarModalBtn" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary" data-mdb-ripple-init>Guardar</button>
                 </div>
-            </form>
         </div>
         </div>
     </div>
 
 
-    <div class="modal fade" id="modalPdf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="formularioPdf">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">PDF</h5>
-                <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12 mb-2">
-                            <div class="form-outline" data-mdb-input-init>
-                                <input type="date" required name="fechaPDF" id="fechaPDF" class="form-control form-control-lg" />
-                                <label class="form-label" for="fechaPDF">Ingresar Fecha</label>
-                            </div>                          
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                <button type="button" id="cerrarModalBtnPdf" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary" data-mdb-ripple-init>Ver PDF</button>
-                </div>
-            </form>
-        </div>
-        </div>
-    </div>
+   
     <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->

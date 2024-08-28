@@ -2,7 +2,8 @@
 require "conn.php";
 
 
-$sql = "SELECT * FROM `ingresos` WHERE fecha=$_GET[fecha] and moneda=$_GET[moneda]";
+$sql = "SELECT a.id,u.nombreCompleto,a.`fechaInicio`, a.`estado` FROM `agenda` as a 
+JOIN users as u on u.id=a.idUser WHERE u.id=$_GET[id] and a.estado='En curso'";
 
 // Preparar la consulta
 $res = $conn->prepare($sql);

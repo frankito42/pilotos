@@ -1,28 +1,47 @@
 <?php
 require "conn.php";
-$monto=$_POST['monto'];
+$id=$_GET['id'];
 
 
-$sql = "INSERT INTO `ingresos`(`monto`, `fecha`,tipo,metodo,detalle,moneda,userId) VALUES (:m,NOW(),:tipo,:metodo,:detalle,:moneda,:userId)";
+$sqlVer = "SELECT * FROM `agenda` WHERE idUser=$_GET[id] and estado='En curso'";
 
 // Preparar la consulta
-$res = $conn->prepare($sql);
+$verXd = $conn->prepare($sqlVer);
 
-// Asociar los valores a los marcadores de posición
-$res->bindParam(':m', $monto);
-$res->bindParam(':tipo', $_POST['tipoIngreso']);
-$res->bindParam(':metodo', $_POST['metodoPago']);
-$res->bindParam(':detalle', $_POST['detalle']);
-$res->bindParam(':moneda', $_POST['moneda']);
-$res->bindParam(':userId', $_GET['id']);
+// Asociar los valoverXd a los marcadoverXd de posición
 
+$verXd->execute();
 
-if($res->execute()){
+$verXd=$verXd->fetchAll(PDO::FETCH_ASSOC);
+
+if(count($verXd)>=1){
+
     echo json_encode("ok");
 }else{
-    echo json_encode("error");
+
+    $sql = "INSERT INTO `agenda`(`idUser`, `fechaInicio`) VALUES (:id,NOW())";
+
+    // Preparar la consulta
+    $res = $conn->prepare($sql);
+    
+    // Asociar los valores a los marcadores de posición
+    $res->bindParam(':id', $id);
+    
+    
+    
+    if($res->execute()){
+        echo json_encode("ok");
+    }else{
+        echo json_encode("error");
+    
+    }
 
 }
+
+
+
+
+
 
 
 

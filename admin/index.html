@@ -68,29 +68,89 @@
     </header>
     <div class="container mt-2">
         <div class="row mb-2">
-            <div class="col-6">
+            <div class="col-12">
                 <button type="button" data-mdb-modal-init data-mdb-target="#modalNuevoAlumno" class="btn btn-primary" data-mdb-ripple-init>Registrar Alumno</button>
-            </div>
-            <div class="col-6">
-                <div class="form-outline" data-mdb-input-init>
-                    <input type="text" required id="search" name="search" class="form-control" />
-                    <label class="form-label" for="search">Buscar</label>
-                </div>
             </div>
         </div> 
         <div class="row mb-2">
             <div class="col-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>piloto</th>
-                            <th>dni</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaPilotos">
-
-                    </tbody>
-                </table>
+                 <!-- Tabs navs -->
+                 <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a
+                        data-mdb-tab-init
+                        class="nav-link active"
+                        id="ex1-tab-1"
+                        href="#ex1-tabs-1"
+                        role="tab"
+                        aria-controls="ex1-tabs-1"
+                        aria-selected="true"
+                        >Todos los pilotos</a
+                      >
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a
+                        data-mdb-tab-init
+                        class="nav-link"
+                        id="ex1-tab-2"
+                        href="#ex1-tabs-2"
+                        role="tab"
+                        aria-controls="ex1-tabs-2"
+                        aria-selected="false"
+                        >Registros de vuelo</a
+                      >
+                    </li>
+                  </ul>
+                  <!-- Tabs navs -->
+                  
+                  <!-- Tabs content -->
+                  <div class="tab-content" id="ex1-content">
+                    <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                      <div class="form-outline" data-mdb-input-init>
+                        <input type="text" required id="search" name="search" class="form-control" />
+                        <label class="form-label" for="search">Buscar</label>
+                    </div>
+                      
+                      
+                      <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>piloto</th>
+                                <th>dni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPilotos">
+    
+                        </tbody>
+                    </table>
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                    </div>
+                    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>Piloto</th>
+                                  <th>DNI</th>
+                                  <th>Fecha inicio</th>
+                                  <th>Fecha fin</th>
+                                  <th>Estado</th>
+                              </tr>
+                          </thead>
+                          <tbody id="finalizados">
+                              
+                          </tbody>
+                      </table>
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////// -->
+                    </div>
+                  </div>
+                  <!-- Tabs content -->
+                
             </div>
         </div>
     </div>
